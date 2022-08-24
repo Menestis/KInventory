@@ -64,9 +64,9 @@
 
     <distributionManagement>
         <repository>
-            <id>guillaume-etheve</id>
+            <id>aspaku</id>
             <name>Releases</name>
-            <url>https://nexus.guillaume-etheve.fr/repository/maven/</url>
+            <url>https://nexus.aspaku.com/repository/maven/</url>
         </repository>
     </distributionManagement>
 

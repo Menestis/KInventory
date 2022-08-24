@@ -216,7 +216,11 @@ public class KInventory implements ContainerElement {
      * @throws IndexOutOfBoundsException If the slot is negative or outside of the inventory
      */
     public void setElement(int slot, ContainerElement element) {
-        ContainerElement previousValue = this.content.put(slot, element);
+        ContainerElement previousValue;
+        if (element == null)
+            previousValue = this.content.remove(slot);
+        else
+            previousValue = this.content.put(slot, element);
         this.containerInventorySupport.firePropertyChange(new ContainerInventoryElementChangeEvent(this, previousValue, element));
 
         if (element == null) {
@@ -243,6 +247,19 @@ public class KInventory implements ContainerElement {
             inventoryElement.getItemRepresentation().getEventPoll().addPropertyChangeListener(listener -> setElementListener(slot, p -> ((KItem) listener.getSource()).constructItem(p)));
             this.itemEventPoll.addPropertyChangeListener(listener -> setElementListener(slot, p -> ((KItem) listener.getNewValue()).constructItem(p)));
         }
+    }
+
+    public void removeElement(int slot) {
+        ContainerElement previousValue = this.content.remove(slot);
+        this.containerInventorySupport.firePropertyChange(new ContainerInventoryElementChangeEvent(this, previousValue, null));
+
+        // Want to clear the slot
+        setElementListener(slot, p -> null);
+    }
+
+    public void clear() {
+        Set<Integer> i = new HashSet<>(this.content.keySet());
+        i.forEach(this::removeElement);
     }
 
     protected final void trackRepresentation(KInventoryRepresentation representation) {
