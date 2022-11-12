@@ -137,7 +137,11 @@ public class KItem implements ContainerElement {
 
     @Override
     public ItemStack constructItem(Player player) {
-        ItemStack item = getItem().apply(player).clone();
+        ItemStack apply = getItem().apply(player);
+        if (apply == null) {
+            return null;
+        }
+        ItemStack item = apply.clone();
         ItemMeta meta = Objects.requireNonNull(item.getItemMeta());
         if (nameFunction != null) {
             meta.setDisplayName(getName().apply(player));

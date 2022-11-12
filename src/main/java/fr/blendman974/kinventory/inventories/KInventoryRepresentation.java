@@ -23,7 +23,15 @@ public class KInventoryRepresentation {
         } else {
             this.craftInventory = Bukkit.createInventory(null, type.getSize(), inventory.getName().apply(player));
         }
-        inventory.getContent().forEach((slot, element) -> craftInventory.setItem(slot, element.constructItem(player)));
+        redraw();
+    }
+
+    public void redraw() {
+        inventory.getContent().forEach((slot, element) -> {
+            ItemStack item = element.constructItem(player);
+            if (item == null) craftInventory.clear(slot);
+            else craftInventory.setItem(slot, item);
+        });
     }
 
     void setElementListener(int slot, ItemStack item) {
