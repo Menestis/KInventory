@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version>0.4</version>
-        <spigot.version>1.16.5-R0.1-SNAPSHOT</spigot.version>
+        <spigot.version>1.19.4-R0.1-SNAPSHOT</spigot.version>
     </properties>
 
     <build>
@@ -57,16 +57,16 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <id>guillaume-etheve</id>
-            <url>https://nexus.guillaume-etheve.fr/repository/maven/</url>
+            <id>UndefinedDev</id>
+            <url>https://nexus.undefined-dev.fr/repository/maven/</url>
         </repository>
     </repositories>
 
     <distributionManagement>
         <repository>
-            <id>aspaku</id>
+            <id>UndefinedDev</id>
             <name>Releases</name>
-            <url>https://nexus.aspaku.com/repository/maven/</url>
+            <url>https://nexus.undefined-dev.fr/repository/maven/</url>
         </repository>
     </distributionManagement>
 
